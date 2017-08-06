@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace命名空间，其作用是对sql进行分类化管理，理解sql隔离
+ 注意使用namespace代理方法开发，namespace有特殊的含义，namespace与mapper接口的全类名相等
+ -->
+<mapper namespace="com.markliu.mybatis_advance.mapper.OrdersMapper">
+
+    <!-- 插入测试数据 -->
+    <insert id="insertOrders" parameterType="com.markliu.mybatis_advance.domain.po.Orders" >
+        INSERT INTO orders(user_id, number, createtime, note) VALUES (#{userId}, #{number}, #{createtime}, #{note})
+    </insert>
+
+    <!-- 查询订单信息，关联查询创建订单的用户信息 -->
+    <select id="selectOrdersAndUser" resultType="com.markliu.mybatis_advance.domain.vo.OrdersCustom">
+        SELECT orders.*, user.username, user.address
+          FROM orders, user
+            WHERE orders.id = user.id
+    </select>
+
+    <resultMap id="OrdersAndUserResultMap" type="com.markliu.mybatis_advance.domain.po.Orders" >
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="number" property="number" />
+        <result column="createtime" property="createtime" />
+        <result column="note" property="note" />
+
+        <!-- 配置映射的关联的用户信息 -->
+        <!-- association：用于映射关联查询单个对象的信息
+        property：要将关联查询的用户信息映射到Orders中哪个属性
+         -->
+        <association property="user" javaType="com.markliu.mybatis_advance.domain.po.User" >
+            <id column="id" property="id" />
+            <result column="username" property="username" />
+            <result column="sex" property="sex" />
+            <result column="birthday" property="birthday" />
+            <result column="address" property="address" />
+        </association>
+    </resultMap>
+
+    <!-- 查询订单信息，关联查询用户信息和订单详细信息 -->
+    <resultMap id="OrdersUserAndOrderDetailsByResultMap"
+               type="com.markliu.mybatis_advance.domain.po.Orders"
+               extends="OrdersAndUserResultMap">
+        <!--&lt;!&ndash; 查询订单信息 &ndash;&gt;-->
+        <!--<id column="id" property="id" />-->
+        <!--<result column="user_id" property="userId" />-->
+        <!--<result column="number" property="number" />-->
+        <!--<result column="createtime" property="createtime" />-->
+        <!--<result column="note" property="note" />-->
+
+        <!--&lt;!&ndash; 关联查询用户信息 &ndash;&gt;-->
+        <!--<association property="user" javaType="com.markliu.mybatis_advance.domain.po.User" >-->
+            <!--<id column="id" property="id" />-->
+            <!--<result column="username" property="username" />-->
+            <!--<result column="sex" property="sex" />-->
+            <!--<result column="birthday" property="birthday" />-->
+            <!--<result column="address" property="address" />-->
+        <!--</association>-->
+
+        <!-- 关联查询订单详细信息
+        ofType： 指定List的范型的类型
+        -->
+        <collection property="orderdetails" ofType="com.markliu.mybatis_advance.domain.po.Orderdetail">
+            <id column="order_detail_id" property="id"/>
+            <result column="orders_id" property="ordersId"/>
+            <result column="items_id" property="itemsId"/>
+            <result column="itemsNum" property="itemsNum"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectOrdersAndUserByResultMap" resultMap="OrdersAndUserResultMap">
+        SELECT orders.*, user.username, user.address
+          FROM orders, user
+            WHERE orders.id = user.id
+    </select>
+
+    <select id="selectselectOrdersUserAndOrderDetailsByResultMap" resultMap="OrdersUserAndOrderDetailsByResultMap">
+        SELECT
+          orders.*,
+          user.username,
+          user.address,
+          order_detail.id order_detail_id,
+          order_detail.orders_id,
+          order_detail.items_id,
+          order_detail.itemsNum
+        FROM
+          orders,
+          user,
+          order_detail
+        WHERE
+          orders.id = user.id AND order_detail.orders_id = orders.id
+    </select>
+
+    <resultMap id="OrdersAndUserLazyLoadingResultMap" type="com.markliu.mybatis_advance.domain.po.Orders" >
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="number" property="number" />
+        <result column="createtime" property="createtime" />
+        <result column="note" property="note" />
+
+        <!-- 实现对用户信息进行延迟加载
+            select：指定延迟加载需要执行的statement的id（是根据user_id查询用户信息的statement）
+                要使用userMapper.xml中findUserById完成根据用户id(user_id)用户信息的查询，
+                如果findUserById不在本mapper中需要前边加namespace
+            column：订单信息中关联用户信息查询的列，是user_id
+         -->
+        <association property="user" javaType="com.markliu.mybatis_advance.domain.po.User"
+                     select="com.markliu.mybatis_advance.mapper.UserMapper.selectUserById"
+                     column="user_id">
+        </association>
+    </resultMap>
+
+    <select id="selectOrdersAndUserLazyLoading" resultMap="OrdersAndUserLazyLoadingResultMap">
+        select * FROM orders
+    </select>
+
+</mapper>
