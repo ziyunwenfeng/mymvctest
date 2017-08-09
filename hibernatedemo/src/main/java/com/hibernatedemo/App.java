@@ -22,9 +22,27 @@ public class App
         Session session = factory.openSession();
         session.beginTransaction();
         WorkerMan workerMan = new WorkerMan();
-        workerMan.setId(1);
-        workerMan.setName("y");
-        session.save(workerMan);
+//        workerMan.setId(12);
+//        workerMan.setName("b");
+//        session.save(workerMan);
+        
+//        Stu stu = new Stu();
+//        stu.setId(1);
+//        stu.setName("jac");
+//        session.save(stu);
+        
+        Addr addr = new Addr();
+        addr.setCity("sh");
+        
+        Emp emp = new Emp();
+        emp.setName("bg");
+        emp.setAddr(addr);
+        
+        addr.setEmp(emp);
+        
+        session.save(addr);
+        session.save(emp);
+        
         session.getTransaction().commit();
         session.close();
         factory.close();

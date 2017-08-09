@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC
-        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-        
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">     
 <hibernate-configuration>
     <session-factory>
         <!-- Database connection settings,Sql2000与2005有区别，此处是SQL２００５的 -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost:3306/mybatis</property>
         <property name="connection.username">root</property>
-        <property name="connection.password">123456</property>
+        <property name="connection.password">1234</property>
 
         <!-- JDBC connection pool (use the built-in) Hibernate自带的连接池，一般不用，注释掉！ -->
         <!-- <property name="connection.pool_size">1</property> -->
@@ -37,5 +36,8 @@
         <property name="hibernate.hbm2ddl.auto">create</property>
          -->
         <mapping resource="WorkerMan.hbm.xml" />
+        <mapping class = "com.hibernatedemo.Stu"></mapping>
+        <mapping resource="Emp.hbm.xml"></mapping>
+        <mapping resource="Addr.hbm.xml"></mapping>
     </session-factory>
 </hibernate-configuration>
