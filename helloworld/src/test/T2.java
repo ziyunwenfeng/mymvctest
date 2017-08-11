@@ -10,7 +10,7 @@ public class T2 {
 	public static void main(String[] args) {
 		ApplicationContext appContext = new ClassPathXmlApplicationContext(new String[] { "applicationContext.xml" });
 
-		User cust = (User) appContext.getBean("userProxy2");
+		User cust = (User) appContext.getBean("userProxy4");
 
 		System.out.println("*************************");
 		cust.printName();

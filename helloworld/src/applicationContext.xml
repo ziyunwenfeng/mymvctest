@@ -3,14 +3,27 @@
     xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:p="http://www.springframework.org/schema/p"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"> 
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:cache="http://www.springframework.org/schema/cache"    
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+     http://www.springframework.org/schema/aop  
+       http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+        http://www.springframework.org/schema/context  
+    http://www.springframework.org/schema/context/spring-context-3.1.xsd
+    http://www.springframework.org/schema/cache  
+http://www.springframework.org/schema/cache/spring-cache.xsd"> 
+  <!-- <aop:aspectj-autoproxy/>  --> 
     <bean class = "org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"></bean>
     <!-- 配置需要被Spring管理的Bean（创建，创建后放在了Spring IOC容器里面）-->
+   <!-- 
     <bean id="hello" class="com.Hello">
-        <!-- 配置该Bean需要注入的属性（是通过属性set方法来注入的） -->
+      
         <property name="info" value="Happy New Year!"/>
-    </bean>
-    
+    </bean> -->
+   <!--  
     <bean id = "OutHelper" class = "com.OutHelper" >
     	<property name="outputGenerator" ref = "JsonOutput2"></property>
     </bean>
@@ -103,4 +116,38 @@
 		</property>
 	</bean>
 	
+	
+	<bean id = "userProxy4" class = "org.springframework.aop.framework.ProxyFactoryBean">
+		<property name= "target" ref = "User"></property>
+		<property name = "interceptorNames">
+			<list>
+				<value>HiAdvisor</value>
+			</list>
+		</property>
+	</bean>
+	<bean id = "userCut" class = "org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name = "mappedName" value = "printName"></property>		
+	</bean>
+	<bean id = "HiAdvisor" class = "org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+		<property name="pointcut" ref = "userCut"></property>
+		<property name="advice" ref = "HiArount"></property>
+	</bean>
+	 
+	 <bean id="guardian" class = "com.samter.aspect.Guardian"></bean>
+	<bean id = "mokey" class = "com.samter.common.Mokey"></bean>
+	 
+    <bean id="Owner" class="aop.Owner" />  
+    <bean id="mokey" class="aop.Mokey" />   -->
+	<aop:aspectj-autoproxy />
+	<cache:annotation-driven cache-manager="cacheManager" />  
+	<bean id = "UserService" class = "cache.UserService">
+	</bean>
+	<bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">  
+        <property name="caches">  
+            <set>  
+                <bean class="cache.MyCache"  
+                    p:name="userCache" />  
+            </set>  
+        </property>  
+    </bean>  
 </beans>
