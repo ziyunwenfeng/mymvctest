@@ -1,8 +1,10 @@
 package model;
 
+import javax.persistence.Entity;
+
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
-
+@Entity
 public class User {
     
     //用户id

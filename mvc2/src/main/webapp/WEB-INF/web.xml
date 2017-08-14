@@ -34,7 +34,7 @@
     <!-- Servlet访问的路径映射，所有的访问都必须经过调度用的前置控制器 -->
     <servlet-mapping>
         <servlet-name>SpringMVC</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
     
     <!--编码过滤器 -->
@@ -51,7 +51,7 @@
     <!-- 路径映射 -->
     <filter-mapping>
         <filter-name>encodingFilter</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/</url-pattern>
     </filter-mapping>
     
       <welcome-file-list>

@@ -1,10 +1,8 @@
 service\IUserService.class
-serviceimpl\DictServiceImpl.class
 serviceimpl\UserServiceImpl.class
 model\Dict.class
 controller\UserController.class
 dao\IDictDao.class
 dao\IUserDao.class
 model\UserExtend.class
-service\IDictService.class
 model\User.class
