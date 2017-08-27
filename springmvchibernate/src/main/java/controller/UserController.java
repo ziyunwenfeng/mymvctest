@@ -24,7 +24,6 @@ public class UserController {
 
 	@RequestMapping(value = "/count", method = RequestMethod.GET)
 	public ModelAndView count() {
-System.out.println("int the count");
 		int c = userService.userCount();
 
 		ModelAndView mv = new ModelAndView();
