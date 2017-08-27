@@ -1,8 +1,11 @@
 package service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import dao.UserDAO;
 
 public class UserService {
+	@Autowired
 	private UserDAO userDAO ;
 
 	public UserDAO getUserDAO() {
