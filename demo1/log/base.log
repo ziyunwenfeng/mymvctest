@@ -1,0 +1,21 @@
+2017-08-28 16:20:45,394 INFO (StartupInfoLogger.java:48)- Starting Demo1Application on SHVM01224 with PID 7856 (E:\code\demo1\target\classes started by wenfeng.tang in E:\code\demo1)
+2017-08-28 16:20:45,400 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.6.RELEASE, Spring v4.3.10.RELEASE
+2017-08-28 16:20:45,400 INFO (SpringApplication.java:593)- No active profile set, falling back to default profiles: default
+2017-08-28 16:20:48,956 INFO (StartupInfoLogger.java:57)- Started Demo1Application in 4.063 seconds (JVM running for 5.024)
+2017-08-28 16:21:11,112 DEBUG (Demo1Application.java:20)- /
+2017-08-28 16:21:27,702 DEBUG (Demo1Application.java:20)- /
+2017-08-28 16:21:28,545 DEBUG (Demo1Application.java:20)- /
+2017-08-28 16:21:28,742 DEBUG (Demo1Application.java:20)- /
+2017-08-28 16:21:28,889 DEBUG (Demo1Application.java:20)- /
+2017-08-28 16:21:36,522 INFO (StartupInfoLogger.java:48)- Starting Demo1Application on SHVM01224 with PID 5864 (E:\code\demo1\target\classes started by wenfeng.tang in E:\code\demo1)
+2017-08-28 16:21:36,527 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.6.RELEASE, Spring v4.3.10.RELEASE
+2017-08-28 16:21:36,528 INFO (SpringApplication.java:593)- No active profile set, falling back to default profiles: default
+2017-08-28 16:21:40,105 INFO (StartupInfoLogger.java:57)- Started Demo1Application in 4.13 seconds (JVM running for 5.156)
+2017-08-28 16:21:44,385 DEBUG (Demo1Application.java:20)- /
+2017-08-28 16:22:03,619 INFO (StartupInfoLogger.java:48)- Starting Demo1Application on SHVM01224 with PID 668 (E:\code\demo1\target\classes started by wenfeng.tang in E:\code\demo1)
+2017-08-28 16:22:03,624 DEBUG (StartupInfoLogger.java:51)- Running with Spring Boot v1.5.6.RELEASE, Spring v4.3.10.RELEASE
+2017-08-28 16:22:03,625 INFO (SpringApplication.java:593)- No active profile set, falling back to default profiles: default
+2017-08-28 16:22:07,018 INFO (StartupInfoLogger.java:57)- Started Demo1Application in 3.892 seconds (JVM running for 4.847)
+2017-08-28 16:22:11,636 DEBUG (Demo1Application.java:20)- in the /
+2017-08-28 16:22:12,488 DEBUG (Demo1Application.java:20)- in the /
+2017-08-28 16:22:12,661 DEBUG (Demo1Application.java:20)- in the /
