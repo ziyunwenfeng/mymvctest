@@ -13,6 +13,12 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+	private String name;
+	private String reader;
+	private String isbn;
+	private String title;
+	private String author;
+	private String description;
 	public String getReader() {
 		return reader;
 	}
@@ -43,12 +49,7 @@ public class Book {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	private String name;
-	private String reader;
-	private String isbn;
-	private String title;
-	private String author;
-	private String description;
+	
 	public int getId() {
 		return id;
 	}
@@ -60,5 +61,9 @@ public class Book {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	@Override
+	public String toString(){
+		return "book "+id+" name "+name+"  title "+title+" description "+description+" reader "+reader;
 	}
 }
