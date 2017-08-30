@@ -13,6 +13,15 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
+<<<<<<< HEAD
+=======
+	private String name;
+	private String reader;
+	private String isbn;
+	private String title;
+	private String author;
+	private String description;
+>>>>>>> a774816ec15a20abd1c6380fb7413586f31f2717
 	public String getReader() {
 		return reader;
 	}
@@ -43,12 +52,16 @@ public class Book {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+<<<<<<< HEAD
 	private String name;
 	private String reader;
 	private String isbn;
 	private String title;
 	private String author;
 	private String description;
+=======
+	
+>>>>>>> a774816ec15a20abd1c6380fb7413586f31f2717
 	public int getId() {
 		return id;
 	}
@@ -61,4 +74,11 @@ public class Book {
 	public void setName(String name) {
 		this.name = name;
 	}
+<<<<<<< HEAD
+=======
+	@Override
+	public String toString(){
+		return "book "+id+" name "+name+"  title "+title+" description "+description+" reader "+reader;
+	}
+>>>>>>> a774816ec15a20abd1c6380fb7413586f31f2717
 }
